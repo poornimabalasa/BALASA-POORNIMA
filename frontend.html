@@ -1,0 +1,26 @@
+<!-- frontend.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Code Plagiarism Checker</title></head>
+<body>
+    <h2>Code Plagiarism Detection Tool</h2>
+    <textarea id="code1" placeholder="Paste code 1 here..." rows="10" cols="50"></textarea><br>
+    <textarea id="code2" placeholder="Paste code 2 here..." rows="10" cols="50"></textarea><br>
+    <button onclick="checkPlagiarism()">Check Similarity</button>
+    <p id="result"></p>
+
+    <script>
+        async function checkPlagiarism() {
+            const code1 = document.getElementById('code1').value;
+            const code2 = document.getElementById('code2').value;
+            const response = await fetch('/check_plagiarism', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({code1, code2})
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = Similarity; {data.similarity_percentage.toFixed(2)};
+        }
+    </script>
+</body>
+</html>
